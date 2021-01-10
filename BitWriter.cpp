@@ -8,9 +8,9 @@ BitWriter::BitWriter(std::ofstream* outputFile) {
   huffFile = outputFile; 
   count = 0;
 }*/
-
+//TODO: Complete implementation. Currently stubs
 int BitWriter::putBit(unsigned int bit) {
-  cout <<bit;
+  cout << bit;
   return 0; 
 }
 
@@ -20,5 +20,5 @@ int BitWriter::putByte(unsigned char byte) {
 }
 
 void BitWriter::flush() {
-
+  cout << count; 
 }
