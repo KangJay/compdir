@@ -8,17 +8,28 @@ BitWriter::BitWriter(std::ofstream* outputFile) {
   huffFile = outputFile; 
   count = 0;
 }*/
-//TODO: Complete implementation. Currently stubs
 int BitWriter::putBit(unsigned int bit) {
-  cout << bit;
+  byte <<= 1; 
+  if (bit == 1) {
+    byte |= bit; 
+  } // Else don't do anything. 
+  
+  if (++count == 8) { //Byte is currently full 
+    count = 0; 
+    putByte(byte);
+  }
   return 0; 
 }
 
 int BitWriter::putByte(unsigned char byte) {
-  cout << byte;
+  huffFile->put(byte);
   return 0; 
 }
 
 void BitWriter::flush() {
-  cout << count; 
+  if (count > 0) {
+    byte <<= (8 - count); 
+    huffFile->put(byte); 
+    count = 0;
+  } // else do nothing
 }
